@@ -1,0 +1,76 @@
+// VS Code 라이브러리
+1. Code Spell Checker : 코드 스펠링 체크
+2. Live Server
+3. Prettier : 내 코드 정렬을 도와 줌
+4. ES7 React/Redux/GraphQL/React : React 배울 때 사용하는 익스텐션
+5. auto Tag : 자동으로 태그 수정 도와줌(클로징 태그 수정)
+6. auto Close Tag : 닫힘 태그 자동으로 만들어 줌
+7. GitLens : git으로 작업할때 commit보고 코드 비교 해줌
+
+
+// ctrl + shift + p (cmd + shift + p) => Shell Command:Install 'cpde' cpmmand in PATH  다운로드
+
+
+// 검색창 cmd (terminal)
+1. dir(ls) : user 경로 종류
+2. cd desktop : 데스크탑으로 이동 - cd는 이동
+3. mkdir 폴더명 : 폴더 생성
+4. 폴더명 중간쯤 치다가 tap 클릭하면 자동완성
+5. code . : VS code로 이동
+
+// github의 시작
+gitHub 가입 > 로그인 > 페이지에서 New 클릭 > Create repository
+
+
+// git 설치 > 다운로드
+// Git Bash 오픈
+1. git config --global user.name "Naseul Lim"
+2. git config --globa user.email "github 가입한 이메일"
+3. git config --list                        <= user.name과 user.email 확인
+4. cmd 오픈 
+    > cd desktop > mkdir 프로젝트 폴더 이름 or cd 프로젝트 폴더 이동 > mkdir 폴더 생성 > dir (폴더 확인)
+    > cd 프로젝트 폴더 이동 > code . (VS Code로 이동)
+    > html 기본 세팅
+    => 모든 건 다 마지막에 생성한 폴더 안에 있어야 한다
+    > VS Code terminal 클릭 (생성한 폴더 안에 있는지 확인)
+
+
+// VS Code New terminal 세팅
+1. git init                 => 프로젝트 올리기
+    // Initialized empty Git repository in 경로 가 나오면 성공!!
+2. git add .                => 모든 파일 업로드 하겠다
+3. git add index.html       => 파일 한개만 업로드 가능
+4. git status               => 상태를 확인하는 용도
+5. git commit -m "first commit"         => 히스토리 만들기
+    // "first commit"은 히스토리의 이름이다.
+6. git remote 복사해서 프로젝트 터미널에 붙이기         => git 허브에 있는 링크(연결고리 생성)
+7. git remote -VS           => 주소 확인
+8. git push -u origin main
+9. git add .    
+10. git commit -m "second commit" 
+11. git push -u origin main
+
+
+// main 명령어 변경
+> Settings > Default branch에서 명령어 변경 가능
+
+//  VS Code 터미널에서 branch 변경
+> git branch -M main
+
+
+// netlify
+// https://www.netlify.com/
+> github 로그인 > team 클릭 > Add new project > Import an existing project
+> Base directory : 찾아갈 디플로이 (index.html 폴더 경로 없으면 빈칸?)
+    // 무조건 index.html 이여야 한다
+> Deploy 프로젝트명
+> 초록색 링크 선택
+
+// netlify 주소변경
+> Project configuration > Change project name
+
+// netlify 새로운 코드 추가 시
+> terminal > git add . > git commit -m "add new code" > git push -u origin main
+
+// netlify project delete
+https://spokehouse.tistory.com/111#google_vignette
