@@ -11,6 +11,7 @@
 
 let computerNum = 0;
 // 랜덤으로 변화하는 숫자는 상수를 사용하지 않는다.
+// 램덤으로 가지고 올 숫자 초기화 변수
 
 // html에 있는 버튼 값 가져오기
 let playBut = document.getElementById("playBtn");
