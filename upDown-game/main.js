@@ -34,12 +34,18 @@ let gameOver = false;
 // 찬스값 출력 
 let chanceArea = document.getElementById("chance-area");
 
+// 사용자 입력한 값들 히스토리 저장
+let history =  [];
+
 // playBtn에 이벤트 추가
 // addEventListener("불러올 이벤트", 실행할 함수)
 // play를 변수로써 활용 => 함수도 매개변수로 넘길 수 있다.
 playBut.addEventListener("click", play);
 // reset 클릭 이벤트
 resetBtn.addEventListener("click", reset);
+// 사용자가 숫자를 입력하면 input창에 자동 숫자 삭제
+userInput.addEventListener("focus", function(){userInput.value = ""});
+// 익명함수는 내가 다른 곳에 안 쓸 경우에만 안에 있는 내용의 로직이 단순할 때 주로 사용한다
 
 // 번호 생성 함수
 function pickRandomNum() {
@@ -51,17 +57,36 @@ function pickRandomNum() {
 
 function play() {
     let userValue = userInput.value;
+
+    // 유효성 검사
+    if(userValue < 1 || userValue > 100) {
+        resultArea.textContent = "1과 100사이 숫자를 입력해 주세요.";
+        return;         // 기회를 깍지 않고 종료
+    }
+
+    // 히스토리 유효성 검사
+    if(history.includes(userValue)) {
+        // 만약 히스토리에 입력한 userValue 값이 있다면
+        resultArea.textContent = "이미 입력한 숫자입니다. 다른 숫자를 입력해 주세요.";
+        return;
+    }
+
     // 찬스 값 출력
     chances -- ;
     chanceArea.textContent = `남은 기회 : ${chances}번`; 
     console.log("chances : ", chances)
+
     if(userValue < computerNum) {
         resultArea.textContent = "UP!!!"
     } else if(userValue > computerNum) {
         resultArea.textContent = "DOWN!!!"
     } else {
         resultArea.textContent = "맞췄습니다!!"
+        gameOver = true;            // 정답을 맞추면 버튼은 disable
     }
+
+    // 사용자가 작성한 값을 배열에 저장
+    history.push(userValue);
 
     if(chances < 1) {
         gameOver = true;
