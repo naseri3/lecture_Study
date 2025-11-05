@@ -17,7 +17,7 @@ function addTask() {
     let taskContent = taskIinput.value;         // taskInput안에 value값 입력
     taskList.push(taskContent);                 // value값 추가
     console.log(taskList);
-    render();
+    render();                                   // 항목 추가 함수 호출
 }
 
 // 리스트에 그리기
