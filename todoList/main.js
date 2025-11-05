@@ -12,26 +12,27 @@ let taskList = [];
 
 addBtn.addEventListener("click", addTask);
 
+// 배열안에 input에 입력한 값들 저장하는 함수
 function addTask() {
-    let taskContent = taskIinput.value;         // taskInput안에 valuer값 입력
-    taskList.push(taskContent);
+    let taskContent = taskIinput.value;         // taskInput안에 value값 입력
+    taskList.push(taskContent);                 // value값 추가
     console.log(taskList);
+    render();
 }
 
+// 리스트에 그리기
 function render() {
     let resultHTML = '';
-
     // task-boar안에 리스트 추가
     for(let i=0; i<taskList.length; i++) {
         resultHTML += `
             <div class="task">
-                <div>JS 공부하기</div>
+                <div>${taskList[i]}</div>
                 <div>
                     <button>Check</button>
                     <button>Delete</button>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
     // task-board안에 리스트 불러오기
     document.getElementById("task-board").innerHTML = resultHTML;
