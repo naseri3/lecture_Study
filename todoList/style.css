@@ -33,4 +33,12 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    border-bottom: 1px solid lightgray;
+}
+.task:last-child {
+    border-bottom: none;
+}
+/* check */
+.task-done {
+    text-decoration: line-through;
 }
