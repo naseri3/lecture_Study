@@ -12,8 +12,17 @@
 let taskIinput = document.getElementById("task-input");
 let addBtn = document.getElementById("add-btn");
 let taskList = [];
+let tabs = document.querySelectorAll(".task-tabs div")
+let mode = 'all';              // 전역변수로 지정
+let filterList = [];
 
 addBtn.addEventListener("click", addTask);
+
+for(let i=1; i<tabs.length; i++) {
+    tabs[i].addEventListener("click", function(event){
+        filter(event);
+    });
+}
 
 // 배열안에 input에 입력한 값들 저장하는 함수
 function addTask() {
@@ -29,25 +38,36 @@ function addTask() {
 
 // 리스트에 그리기
 function render() {
+    // 1. 내가 선택한 탭에 따라서 
+    // 2. 리스트를 달리 보여준다
+    let list = [];
+    if(mode === "all") {
+        // all taskList
+        list = taskList;
+    } else if(mode === "ongoing" || mode === "done") {
+        // ongoing, done ... filterList
+        list = filterList;
+    }
+
     let resultHTML = '';
     // task-boar안에 리스트 추가
-    for(let i=0; i<taskList.length; i++) {
-        if(taskList[i].isComplete ==  true) {
+    for(let i=0; i<list.length; i++) {
+        if(list[i].isComplete ==  true) {
             resultHTML += `
             <div class="task">
-                <div class="task-done">${taskList[i].taskContent}</div>
+                <div class="task-done">${list[i].taskContent}</div>
                 <div>
-                    <button class="btn btn-primary" onClick="toggleComplete('${taskList[i].id}')">Check</button>
-                    <button class="btn btn-danger" onClick="deleteTask('${taskList[i].id}')">Delete</button>
+                    <button class="btn btn-primary" onClick="toggleComplete('${list[i].id}')">Check</button>
+                    <button class="btn btn-danger" onClick="deleteTask('${list[i].id}')">Delete</button>
                 </div>
             </div>`
         } else {
             resultHTML += `
                 <div class="task">
-                    <div>${taskList[i].taskContent}</div>
+                    <div>${list[i].taskContent}</div>
                     <div>
-                        <button class="btn btn-primary" onClick="toggleComplete('${taskList[i].id}')">Check</button>
-                        <button class="btn btn-danger" onClick="deleteTask('${taskList[i].id}')">Delete</button>
+                        <button class="btn btn-primary" onClick="toggleComplete('${list[i].id}')">Check</button>
+                        <button class="btn btn-danger" onClick="deleteTask('${list[i].id}')">Delete</button>
                     </div>
                 </div>`;
         }
@@ -67,7 +87,7 @@ function toggleComplete(id) {
             break;
         }
     }
-    render();
+    filter();
     console.log(taskList);
 }
 // 인터넷에 " generate random id javascript " 검색해서
@@ -85,6 +105,44 @@ function deleteTask(id) {
             break;
         }
     }
-    render();
+    filter();
     // 반드시 ui도 업데이트 해야한다!!
+}
+
+function filter(event) {
+    // console.log("filter", event.target.id);         // 선택한 target의 아이디값 출력
+    mode = event.target.id;         // 내가 선택한 값
+
+    if (event) {
+        underLine.style.width = event.target.offsetWidth + "px";
+        underLine.style.left = event.target.offsetLeft + "px";
+        underLine.style.top =
+          event.target.offsetTop + (event.target.offsetHeight - 4) + "px";
+      } // 진행중 상태에서 끝남으로 표시하면 바로 사라지는 부분은 event가 없음 그래서 조건추가
+
+    filterList = [];
+    if(mode === "all") {
+        // 전체 리스트 보기
+        // cmd + d : 드래그한 코드와 똑같은 코드 수정 가능(아래쪽)
+        render();
+    } else if(mode === "ongoing") {
+        // 진행중인 아이템을 보여준다
+        // task.isComplet == false;
+        for(let i=0; i<taskList.length; i++) {
+            if(taskList[i].isComplete === false) {
+                filterList.push(taskList[i]);
+            }
+        }
+        render();
+        console.log("진행중", filterList);
+    } else if(mode === "done") {
+        // 끝나는 케이스
+        // task.isComplet == true;
+        for(let i=0; i<taskList.length; i++) {
+            if(taskList[i].isComplete === true) {
+                filterList.push(taskList[i]);
+            }
+        }
+        render();
+    }
 }

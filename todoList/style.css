@@ -19,6 +19,7 @@ body {
 }
 .task-tabs div {
     padding: 1em 2em;
+    cursor: pointer;
 }
 #under-line {
     height: 4px;
@@ -28,6 +29,7 @@ body {
     left: 0px;
     top: 52px;
     padding: 0;
+    transition: all 0.3s ease;
 }
 .task {
     display: flex;
