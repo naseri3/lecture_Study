@@ -1,0 +1,12 @@
+92d0543ed6554ab5b6414bee64820d87
+
+
+postman : API 테스트 
+// home > Workspace > My Workspace
+
+
+// 정보 지시사항
+// GET : 정보를 얻어올래?
+// POST : 정보를 보낼래?
+// PUT : 정보를 수정할래?
+// DELETE : 정보를 삭제할래?
