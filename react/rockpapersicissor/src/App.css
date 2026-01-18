@@ -1,0 +1,14 @@
+.box {
+    border: 1px solid black;
+    width: 500px;
+}
+.item-img {width: 400px;}
+.main {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+/* 결과별 테두리 */
+.box.win {border: 5px solid green;}
+.box.lose {border: 5px solid red;}
+.box.tie {border: 5px solid black;}
